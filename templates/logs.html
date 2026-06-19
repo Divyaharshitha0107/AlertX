@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Logs</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/styles.css') }}">
+
+</head>
+
+<body class="logs-theme">
+    {% include 'sidebar.html' %}
+
+<div class="main">
+
+<h1>Detection Logs</h1>
+
+<table class="log-table">
+
+<tr>
+
+<th>Filename</th>
+
+<th>Alert</th>
+
+<th>Time</th>
+
+</tr>
+
+{% for row in logs %}
+
+<tr>
+
+<td>{{ row[0] }}</td>
+
+<td>{{ row[1] }}</td>
+
+<td>{{ row[2] }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+
+</html>

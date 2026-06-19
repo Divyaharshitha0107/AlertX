@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>AlertX Login</title>
+
+<link rel="stylesheet"
+href="{{ url_for(
+'static',
+filename='css/styles.css'
+) }}">
+ <link rel="icon"
+
+href="{{ url_for(
+
+'static',
+
+filename='logos/logo.png'
+
+) }}">
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1">
+
+</head>
+
+<body class="login-body">
+
+<div class="login-container">
+
+<img
+
+src="{{ url_for(
+'static',
+filename='logos/logo.png'
+) }}"
+
+class="login-logo"
+
+>
+
+<h1>AlertX Login</h1>
+
+<form action="/login" method="POST">
+
+<input
+
+type="text"
+
+name="username"
+
+placeholder="Username"
+
+required
+
+>
+
+<input
+
+type="password"
+
+name="password"
+
+placeholder="Password"
+
+required
+
+>
+
+<button type="submit">
+
+Login
+
+</button>
+
+</form>
+
+{% if error %}
+
+<p class="error-msg">
+
+{{ error }}
+
+</p>
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>

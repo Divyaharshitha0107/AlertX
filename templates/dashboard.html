@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>AlertX Dashboard</title>
+
+<link rel="stylesheet"
+href="{{ url_for(
+'static',
+filename='css/styles.css'
+) }}">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon"
+
+href="{{ url_for(
+
+'static',
+
+filename='logos/logo.png'
+
+) }}">
+
+</head>
+
+<body <body class="dashboard-theme">>
+
+<!-- SIDEBAR -->
+
+{% include 'sidebar.html' %}
+
+
+<!-- MAIN -->
+
+<div class="main">
+
+<h1>Cybersecurity Monitoring Dashboard</h1>
+
+
+<!-- TOP STATS -->
+
+<div class="top-section">
+
+<div class="card pink">
+
+<i class="fa-solid fa-chart-line card-icon"></i>
+
+<h3>Total Logs</h3>
+
+<p>{{ total_logs }}</p>
+
+</div>
+
+<div class="card red">
+
+<i class="fa-solid fa-triangle-exclamation card-icon"></i>
+
+<h3>High Alerts</h3>
+
+<p>{{ high_alerts }}</p>
+
+</div>
+
+<div class="card lavender">
+
+<i class="fa-solid fa-shield-halved card-icon"></i>
+
+<h3>Medium Alerts</h3>
+
+<p>{{ medium_alerts }}</p>
+
+</div>
+
+<div class="card green">
+
+<i class="fa-solid fa-check-circle card-icon"></i>
+
+<h3>Low Alerts</h3>
+
+<p>{{ low_alerts }}</p>
+
+</div>
+
+<div class="card purple">
+
+<i class="fa-solid fa-robot card-icon"></i>
+
+<h3>AI Model</h3>
+
+<p>YOLOv8</p>
+
+</div>
+
+</div>
+
+
+<!-- CONTENT -->
+
+<div class="content-area">
+
+
+<!-- LEFT PANEL -->
+
+<div class="upload-box">
+
+<h2>Upload Surveillance Video</h2>
+
+<form action="/upload"
+method="POST"
+enctype="multipart/form-data"
+onsubmit="showLoading(event)">
+<div id="loading-text">
+
+Analyzing Video...
+
+Please wait...
+
+</div>
+
+<input
+type="file"
+name="video"
+accept="video/*"
+required>
+
+<br><br>
+
+<button type="submit" id="analyze-btn">
+
+Analyze Video
+
+</button>
+
+</form>
+
+
+{% if video %}
+
+<h3>Uploaded Video</h3>
+
+<video width="500"
+controls>
+
+<source src="{{ video }}">
+
+</video>
+
+{% endif %}
+
+</div>
+
+
+<!-- RIGHT PANEL -->
+
+<div class="alerts-box">
+
+<h2>Threat Detection</h2>
+
+{% if alert %}
+
+<div class="alert-result {% if alert.startswith('Error') %}error-alert{% else %}success-alert{% endif %}">
+
+{{ alert }}
+
+</div>
+
+{% else %}
+
+<p>No analysis yet</p>
+
+{% endif %}
+
+
+{% if confidence %}
+
+<h3>
+
+Confidence:
+
+{{ confidence }}%
+
+</h3>
+
+{% endif %}
+
+
+<div class="status-box">
+
+<h3>System Status</h3>
+
+<p>
+
+System:
+
+{{ status.system }}
+
+</p>
+
+<p>
+
+Database:
+
+{{ status.database }}
+
+</p>
+
+<p>
+
+Model:
+
+{{ status.model }}
+
+</p>
+
+<p>
+
+Last Detection:
+
+{{ status.last_detection }}
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<script>
+
+let loadingTimeout;
+let isProcessing = false;
+
+function showLoading(event){
+    
+    if (isProcessing) {
+        event.preventDefault();
+        return;
+    }
+    
+    isProcessing = true;
+    
+    // Show loading message
+    document.getElementById("loading-text").style.display = "block";
+    document.getElementById("analyze-btn").disabled = true;
+    document.getElementById("analyze-btn").style.opacity = "0.5";
+    
+    // Show timeout warning after 60 seconds
+    loadingTimeout = setTimeout(function() {
+        const loadingText = document.getElementById("loading-text");
+        loadingText.innerHTML = "<p style='color: #ffaa00;'>Still processing... This may take a few minutes for large videos.</p>";
+    }, 60000);
+    
+    // Fail safe timeout after 5 minutes
+    setTimeout(function() {
+        if (isProcessing) {
+            alert("Processing is taking too long. Please try with a shorter video or check the browser console for errors.");
+            isProcessing = false;
+            document.getElementById("analyze-btn").disabled = false;
+            document.getElementById("analyze-btn").style.opacity = "1";
+            document.getElementById("loading-text").style.display = "none";
+            clearTimeout(loadingTimeout);
+        }
+    }, 300000);
+}
+
+// Reset when page loads
+window.addEventListener('load', function() {
+    document.getElementById("loading-text").style.display = "none";
+    document.getElementById("analyze-btn").disabled = false;
+    document.getElementById("analyze-btn").style.opacity = "1";
+    isProcessing = false;
+});
+
+</script>
+
+</body>
+
+</html>

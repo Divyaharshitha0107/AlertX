@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>AlertX Loading</title>
+
+<link rel="stylesheet"
+href="{{ url_for(
+'static',
+filename='css/styles.css'
+) }}">
+<link rel="icon"
+
+href="{{ url_for(
+
+'static',
+
+filename='logos/logo.png'
+
+) }}">
+
+</head>
+
+<body class="splash-body">
+
+<div class="splash-container">
+
+<img
+
+src="{{ url_for(
+'static',
+filename='logos/logo.png'
+) }}"
+
+class="splash-logo"
+
+>
+
+<h1>AlertX</h1>
+
+<p>
+
+Cybersecurity Threat Monitoring System
+
+</p>
+
+<div class="loader">
+
+Loading...
+
+</div>
+
+</div>
+
+
+<script>
+
+setTimeout(
+
+function(){
+
+window.location.href="/login"
+
+},
+
+3000
+
+)
+
+</script>
+
+</body>
+
+</html>

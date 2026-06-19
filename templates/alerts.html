@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>AlertX Alerts</title>
+
+<link rel="stylesheet"
+href="{{ url_for(
+'static',
+filename='css/styles.css'
+) }}">
+<link rel="icon"
+
+href="{{ url_for(
+
+'static',
+
+filename='logos/logo.png'
+
+) }}">
+
+</head>
+
+<body class="alert-theme">
+    {% include 'sidebar.html' %}
+
+<div class="main">
+    
+
+<h1>Threat Alerts</h1>
+
+{% if alerts %}
+
+{% for row in alerts %}
+
+<div class="alert-card
+
+{% if row[1] == 'High Suspicious' %}
+
+high
+
+{% elif row[1] == 'Medium Suspicious' %}
+
+medium
+
+{% else %}
+
+low
+
+{% endif %}
+
+">
+
+<h2>{{ row[0] }}</h2>
+
+<p>
+
+<b>Threat Level:</b>
+
+{{ row[1] }}
+
+</p>
+
+<p>
+
+<b>Detected At:</b>
+
+{{ row[2] }}
+
+</p>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<h3>No Alerts Found</h3>
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>

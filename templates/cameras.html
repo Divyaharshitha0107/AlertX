@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Cameras</title>
+
+<link rel="stylesheet"
+href="{{ url_for(
+'static',
+filename='css/styles.css'
+) }}">
+ <link rel="icon"
+
+href="{{ url_for(
+
+'static',
+
+filename='logos/logo.png'
+
+) }}">
+
+</head>
+
+<body class="camera-theme">
+    {% include 'sidebar.html' %}
+
+<div class="main">
+    
+
+<h1>Uploaded Videos</h1>
+
+{% for video in uploaded %}
+
+<div class="video-card">
+
+<h3>{{ video }}</h3>
+
+<video width="350" controls>
+
+<source src="/static/uploads/{{ video }}">
+
+</video>
+
+</div>
+
+{% endfor %}
+
+
+<h1>Processed Videos</h1>
+
+{% for video in processed %}
+
+<div class="video-card">
+
+<h3>{{ video }}</h3>
+
+<video width="350" controls>
+
+<source src="/static/processed/{{ video }}">
+
+</video>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+
+</html>

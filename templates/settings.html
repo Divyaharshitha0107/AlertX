@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Settings</title>
+
+<link rel="stylesheet"
+href="{{ url_for(
+'static',
+filename='css/styles.css'
+) }}">
+<link rel="icon"
+
+href="{{ url_for(
+
+'static',
+
+filename='logos/logo.png'
+
+) }}">
+
+</head>
+
+<body class="settings-theme">
+    {% include 'sidebar.html' %}
+
+<div class="main">
+
+<h1>System Settings</h1>
+
+<div class="settings-card">
+
+<h3>Application</h3>
+
+<p>Project Name: AlertX</p>
+
+<p>AI Model: YOLOv8</p>
+
+<p>Database: SQLite</p>
+
+<p>Status: Active</p>
+
+</div>
+
+
+<div class="settings-card">
+
+<h3>Storage</h3>
+
+<p>Uploads Folder: static/uploads</p>
+
+<p>Reports Folder: static/reports</p>
+
+<p>Logs Database: database.db</p>
+
+</div>
+
+
+<div class="settings-card">
+
+<h3>Monitoring</h3>
+
+<p>Detection Mode: Enabled</p>
+
+<p>Threat Analysis: Active</p>
+
+<p>Alert System: Running</p>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<link rel="stylesheet"
+href="{{ url_for(
+'static',
+filename='css/styles.css'
+) }}">
+ <link rel="icon"
+
+href="{{ url_for(
+
+'static',
+
+filename='logos/logo.png'
+
+) }}">
+
+<title>Reports</title>
+
+</head>
+
+<body class="report-theme">
+    {% include 'sidebar.html' %}
+
+<div class="main">
+
+<h1>Security Reports</h1>
+
+<p>
+
+Generate downloadable PDF reports
+for detected threats.
+
+</p>
+
+<a href="/generate_report">
+
+<button>
+
+Generate Report
+
+</button>
+
+</a>
+
+</div>
+
+</body>
+
+</html>

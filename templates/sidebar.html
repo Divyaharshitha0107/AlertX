@@ -1,0 +1,104 @@
+<div class="sidebar">
+
+<div class="sidebar-top">
+
+<div class="brand">
+
+<img src="{{ url_for(
+'static',
+filename='logos/logo.png'
+) }}"
+
+class="sidebar-logo">
+
+<h2>AlertX</h2>
+
+</div>
+
+<a href="/dashboard"
+class="{% if request.path == '/dashboard' %}active-link{% endif %}">
+
+<i class="fa-solid fa-gauge"></i>
+
+Dashboard
+
+</a>
+
+<a href="/cameras"
+
+class="{% if request.path == '/cameras' %}active-link{% endif %}">
+
+<i class="fa-solid fa-video"></i>
+
+Cameras
+
+</a>
+
+<a href="/alerts"
+
+class="{% if request.path == '/alerts' %}active-link{% endif %}">
+
+<i class="fa-solid fa-bell"></i>
+
+Alerts
+
+</a>
+
+<a href="/logs"
+
+class="{% if request.path == '/logs' %}active-link{% endif %}">
+
+<i class="fa-solid fa-file-lines"></i>
+
+Logs
+
+</a>
+
+<a href="/reports"
+
+class="{% if request.path == '/reports' %}active-link{% endif %}">
+
+<i class="fa-solid fa-chart-column"></i>
+
+Reports
+
+</a>
+
+<a href="/settings"
+
+class="{% if request.path == '/settings' %}active-link{% endif %}">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</a>
+
+</div>
+
+<div class="user-box">
+
+Logged in as:
+
+<b>
+
+alertx_admin
+
+</b>
+
+</div>
+
+
+<div class="logout-section">
+
+<a href="/logout">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</div>
+
+</div>
